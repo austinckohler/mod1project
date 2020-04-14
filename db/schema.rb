@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2020_04_14_025239) do
     t.integer "ticket_holder_id"
     t.integer "venue_id"
     t.string "day"
+    t.string "artist"
+    t.string "genre"
     t.index ["ticket_holder_id"], name: "index_venue_ticket_holders_on_ticket_holder_id"
     t.index ["venue_id"], name: "index_venue_ticket_holders_on_venue_id"
   end
