@@ -1,15 +1,13 @@
+require "tty-prompt"
+prompt = TTY::Prompt.new
+
 
 class Cli < ActiveRecord::Base
    
    
     def self.welcome
         puts "Welcome to concert finder!"
-        print_venues
-    end
-
-    def self.print_venues
-        Venue.all 
-
+        collect_user_info
     end
 
     def self.collect_user_info
@@ -34,11 +32,24 @@ class Cli < ActiveRecord::Base
         results
         display_matching_concerts(results)
     end
-    
+
     def self.display_matching_concerts(results)
         results.each do |concert|
-            puts "There is a #{concert.genre} show at #{concert.venue_id} this weekend"
-        end
-    end    
+            venue_name = Venue.all.select do |venue|
+                 venue.id == concert.venue_id
+            end
+            
+            venue1 = venue_name 
+            venue1[0].name
+            puts "There is a #{concert.genre} show at #{venue1[0].name} this #{concert.day}"
+            # selection_for_more_info
+        end  
+    end  
     
+
+    # def self.selection_for_more_info
+    #     puts "Please select a venue for more information"
+    #     selection = gets.chomp
+
+    # end 
 end

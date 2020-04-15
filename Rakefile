@@ -15,3 +15,5 @@ require 'sinatra/activerecord/rake'
 #   # Your code goes here
 #   ruby './app/app.rb'
 # end
+
+ActiveRecord::Base.logger.level = 1  or Logger::INFO
