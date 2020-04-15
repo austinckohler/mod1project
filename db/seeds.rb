@@ -1,28 +1,40 @@
 #file we are using to create test data
-VenueTicketHolder.destroy_all
-TicketHolder.destroy_all
-Venue.destroy_all
 
 
-venue1 = Venue.create(name: "Mission Ballroom", location: "RiNo")
-venue2 = Venue.create(name: "Ogden Theater", location: "Capitol Hill")
-venue3 = Venue.create(name: "Red Rocks Amphitheater ", location: "Morrison")
-venue4 = Venue.create(name: "Boulder Theater", location: "Boulder")
 
-ticket_holder1 = TicketHolder.create(name: "Bob", favorite_genre: "Metal")
-ticket_holder2 = TicketHolder.create(name: "Jane", favorite_genre: "Country")
-ticket_holder3 = TicketHolder.create(name: "Sally", favorite_genre: "EDM")
-ticket_holder4 = TicketHolder.create(name: "Jim", favorite_genre: "Rap")
-ticket_holder5 = TicketHolder.create(name: "Andy", favorite_genre: "Country")
-ticket_holder6 = TicketHolder.create(name: "Bill", favorite_genre: "Country")
+#user //// no seed data, we will acquire this information through our method collect_user_data  //// maybe we don't even need to save users favorite genre
 
-venue_ticket_holder1 = VenueTicketHolder.create(venue_id: venue1.id, ticket_holder_id: ticket_holder3.id, day: "Friday", artist: "Marshmellow", genre: "EDM")
-venue_ticket_holder2 = VenueTicketHolder.create(venue_id: venue4.id, ticket_holder_id: ticket_holder6.id, day: "Saturday", artist: "Blake Shelton", genre: "Country")
-venue_ticket_holder3 = VenueTicketHolder.create(venue_id: venue4.id, ticket_holder_id: ticket_holder2.id, day: "Friday", artist: "Kenny Chesney", genre: "Country")
-venue_ticket_holder4 = VenueTicketHolder.create(venue_id: venue3.id, ticket_holder_id: ticket_holder1.id, day: "Friday", artist: "Metallica", genre: "Metal")
-venue_ticket_holder5 = VenueTicketHolder.create(venue_id: venue2.id, ticket_holder_id: ticket_holder4.id, day: "Saturday", artist: "Snoop Dogg", genre: "Rap")
-venue_ticket_holder6 = VenueTicketHolder.create(venue_id: venue2.id, ticket_holder_id: ticket_holder1.id, day: "Friday", artist: "Slipknot", genre: "Metal")
-venue_ticket_holder7 = VenueTicketHolder.create(venue_id: venue1.id, ticket_holder_id: ticket_holder5.id, day: "Thursday", artist: "Jason Aldean", genre: "Country")
-venue_ticket_holder8 = VenueTicketHolder.create(venue_id: venue3.id, ticket_holder_id: ticket_holder3.id, day: "Saturday", artist: "Carrie Underwood", genre: "Country")
-venue_ticket_holder9 = VenueTicketHolder.create(venue_id: venue2.id, ticket_holder_id: ticket_holder3.id, day: "Thursday", artist: "Lil' Wayne", genre: "Rap")
-venue_ticket_holder10 = VenueTicketHolder.create(venue_id: venue1.id, ticket_holder_id: ticket_holder2.id, day: "Saturday", artist: "Skrillex", genre: "EDM")
+
+
+#concert1 = Concert.create(venue_id, day, artist, genre, price)?
+
+
+#use gem tyyprompt
+#use gem  colorize 
+
+
+venue1 = Venue.create(name: "Red Rocks", location: "Morrison")
+venue2 = Venue.create(name: "Cervantes", location: "Five Points")
+venue3 = Venue.create(name: "Ogden Theatre", location: "Capitol Hill")
+venue4 = Venue.create(name: "Oriental Theatre", location: "Highlands")
+venue5 = Venue.create(name: "Bluebird Theatre", location: "City Park")
+venue6 = Venue.create(name: "Marquis Theatre", location: "Downtown")
+venue7 = Venue.create(name: "Ophelia's", location: "Downtown")
+venue8 = Venue.create(name: "Filmore Theatre", location: "Capitol Hill")
+
+concert1 = Concert.create(artist: "Warbringer", genre: "Metal", venue_id: venue1.id, day: "Friday")
+concert2 = Concert.create(artist: "Dylan Scott", genre: "Country", venue_id: venue1.id, day: "Friday")
+concert3 = Concert.create(artist: "STS9", genre: "Electronic", venue_id: venue2.id, day: "Friday")
+concert4 = Concert.create(artist: "Snoop Dogg", genre: "Hip hop", venue_id: venue2.id, day: "Friday")
+concert5 = Concert.create(artist: "Bassnectar", genre: "Electronic", venue_id: venue3.id, day: "Friday")
+concert6 = Concert.create(artist: "Title Fight", genre: "Metal", venue_id: venue3.id, day: "Friday")
+concert7 = Concert.create(artist: "Willie Nelson", genre: "Country", venue_id: venue4.id, day: "Friday")
+concert8 = Concert.create(artist: "Merle Haggard", genre: "Country", venue_id: venue4.id, day: "Friday")
+concert9 = Concert.create(artist: "Knocked Loose", genre: "Metal", venue_id: venue5.id, day: "Friday")
+concert10 = Concert.create(artist: "Taylor Swift", genre: "Country", venue_id: venue5.id, day: "Friday")
+concert11 = Concert.create(artist: "Gwar", genre: "Metal", venue_id: venue6.id, day: "Friday")
+concert12 = Concert.create(artist: "Apex Twin", genre: "Electronic", venue_id: venue6.id, day: "Friday")
+concert13 = Concert.create(artist: "Daft Punk", genre: "Electronic", venue_id: venue7.id, day: "Friday")
+concert14 = Concert.create(artist: "Kanye West", genre: "Hip hop", venue_id: venue7.id, day: "Friday")
+concert15 = Concert.create(artist: "Childish Gambino", genre: "Hip hop", venue_id: venue8.id, day: "Friday")
+concert16 = Concert.create(artist: "Young Thug", genre: "Hip hop", venue_id: venue8.id, day: "Friday")
