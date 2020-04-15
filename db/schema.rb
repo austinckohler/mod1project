@@ -10,21 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_025239) do
+ActiveRecord::Schema.define(version: 2020_04_15_152711) do
+
+  create_table "concerts", force: :cascade do |t|
+    t.integer "venue_id"
+    t.string "artist"
+    t.string "genre"
+    t.string "day"
+    t.index ["venue_id"], name: "index_concerts_on_venue_id"
+  end
 
   create_table "ticket_holders", force: :cascade do |t|
     t.string "name"
     t.string "favorite_genre"
-  end
-
-  create_table "venue_ticket_holders", force: :cascade do |t|
-    t.integer "ticket_holder_id"
-    t.integer "venue_id"
-    t.string "day"
-    t.string "artist"
-    t.string "genre"
-    t.index ["ticket_holder_id"], name: "index_venue_ticket_holders_on_ticket_holder_id"
-    t.index ["venue_id"], name: "index_venue_ticket_holders_on_venue_id"
   end
 
   create_table "venues", force: :cascade do |t|
@@ -32,6 +30,5 @@ ActiveRecord::Schema.define(version: 2020_04_14_025239) do
     t.string "location"
   end
 
-  add_foreign_key "venue_ticket_holders", "ticket_holders"
-  add_foreign_key "venue_ticket_holders", "venues"
+  add_foreign_key "concerts", "venues"
 end
