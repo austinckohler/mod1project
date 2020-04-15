@@ -13,10 +13,11 @@
 ActiveRecord::Schema.define(version: 2020_04_15_152711) do
 
   create_table "concerts", force: :cascade do |t|
-    t.string "venue"
+    t.integer "venue_id"
     t.string "artist"
     t.string "genre"
     t.string "day"
+    t.index ["venue_id"], name: "index_concerts_on_venue_id"
   end
 
   create_table "ticket_holders", force: :cascade do |t|
@@ -29,4 +30,5 @@ ActiveRecord::Schema.define(version: 2020_04_15_152711) do
     t.string "location"
   end
 
+  add_foreign_key "concerts", "venues"
 end
