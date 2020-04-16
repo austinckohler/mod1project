@@ -7,6 +7,7 @@ class Cli < ActiveRecord::Base
    
     def self.welcome
         puts "Welcome to concert finder!"
+        puts " "
         collect_user_info
     end
 
@@ -15,8 +16,17 @@ class Cli < ActiveRecord::Base
         user_name = gets.chomp
         puts "What genre of music would you like to see this weekend?"
         puts "country, hip hop, electronic or metal"
-        user_genre = gets.chomp
-        puts "Thanks #{user_name}! Let's find you a #{user_genre} show this weekend!"
+        user_genre = gets.chomp.capitalize
+
+        if user_genre == "Metal"  || user_genre == "Country"  || user_genre == "Electronic" || user_genre == "Hip hop"        
+            puts "Thanks #{user_name}! Let's find you a #{user_genre} show this weekend!"
+        else  
+            puts " "
+            puts "No, it should be Metal... From now on you listen to Metal"
+            puts " "
+            puts " "
+            user_genre = "Metal"  
+        end
         set_user(user_name, user_genre)
     end 
 
@@ -41,10 +51,27 @@ class Cli < ActiveRecord::Base
             
             venue1 = venue_name 
             venue1[0].name
-            puts "There is a #{concert.genre} show at #{venue1[0].name} this #{concert.day}"
+            puts "There is a #{concert.artist} show at #{venue1[0].name} this #{concert.day} " 
+        
             # selection_for_more_info
+            
         end  
-    end  
+        puts " "
+        play_again
+    end
+
+        def self.play_again
+            puts "Would you like to look for more concerts?"
+            answer = gets.chomp.downcase
+            if answer == "yes"
+                puts " "
+                self.welcome
+            else
+                puts " "
+                puts "Enjoy the show!!"
+            end
+        end
+      
     
 
     # def self.selection_for_more_info

@@ -16,4 +16,4 @@ require 'sinatra/activerecord/rake'
 #   ruby './app/app.rb'
 # end
 
-ActiveRecord::Base.logger.level = 1  or Logger::INFO
+#ActiveRecord::Base.logger.level = 1  or Logger::INFO
