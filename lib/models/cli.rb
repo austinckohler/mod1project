@@ -1,25 +1,24 @@
-require "tty-prompt"
-prompt = TTY::Prompt.new
 
-
-class Cli < ActiveRecord::Base
+class Cli  #shouldn't inherit from active record because its not a table in the database
    
-   
-    def self.welcome
+   $user_name = ""
+    def welcome
         puts "Welcome to concert finder!"
         puts " "
+        puts "What is your name?"
+        $user_name = gets.chomp
         collect_user_info
     end
 
-    def self.collect_user_info
-        puts "What is your name?"
-        user_name = gets.chomp
+    def collect_user_info
         puts "What genre of music would you like to see this weekend?"
         puts "country, hip hop, electronic or metal"
         user_genre = gets.chomp.capitalize
+        puts " "
 
         if user_genre == "Metal"  || user_genre == "Country"  || user_genre == "Electronic" || user_genre == "Hip hop"        
-            puts "Thanks #{user_name}! Let's find you a #{user_genre} show this weekend!"
+            puts "Thanks #{$user_name}! Let's find you a #{user_genre} show this weekend!"
+            puts " "
         else  
             puts " "
             puts "No, it should be Metal... From now on you listen to Metal"
@@ -27,56 +26,50 @@ class Cli < ActiveRecord::Base
             puts " "
             user_genre = "Metal"  
         end
-        set_user(user_name, user_genre)
+        set_user(user_genre)
     end 
 
-    def self.set_user(user_name, user_genre)
-        TicketHolder.create(name: user_name, favorite_genre: user_genre)
-        select_matching_concerts(user_genre)
+    def set_user(user_genre)
+        TicketHolder.create(name: $user_name, favorite_genre: user_genre)
+        select_concerts_by_genre(user_genre)
     end 
     
-    def self.select_matching_concerts(user_genre)
+    def select_concerts_by_genre(user_genre)
         results = Concert.select do |concert|
             concert.genre == user_genre
         end
         results
-        display_matching_concerts(results)
+        displays_concert_information(results)
     end
 
-    def self.display_matching_concerts(results)
+    def displays_concert_information(results)
         results.each do |concert|
-            venue_name = Venue.all.select do |venue|
-                 venue.id == concert.venue_id
-            end
-            
-            venue1 = venue_name 
-            venue1[0].name
-            puts "There is a #{concert.artist} show at #{venue1[0].name} this #{concert.day} " 
-        
-            # selection_for_more_info
-            
+            puts "There is a #{concert.artist} show at #{concert.venue.name} this #{concert.day} \n" 
         end  
-        puts " "
+        puts "\n"
+        user_selection(results)
+    end
+
+    def user_selection(results)
+        puts "What band would you like to see?"
+        selection = gets.chomp 
+        # if selection.downcase == 
         play_again
     end
 
-        def self.play_again
+    def play_again
             puts "Would you like to look for more concerts?"
             answer = gets.chomp.downcase
             if answer == "yes"
                 puts " "
-                self.welcome
+                self.repeat
             else
                 puts " "
                 puts "Enjoy the show!!"
             end
-        end
+    end
       
-    
-
-    # def self.selection_for_more_info
-    #     puts "Please select a venue for more information"
-    #     selection = gets.chomp
-
-    # end 
+    def repeat
+            collect_user_info
+    end
 end
