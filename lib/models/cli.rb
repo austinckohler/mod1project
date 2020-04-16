@@ -1,19 +1,20 @@
-require "tty-prompt"
-prompt = TTY::Prompt.new
 
-
-class Cli < ActiveRecord::Base
+class Cli  #shouldn't inherit from active record because its not a table in the database
    
    
-    def self.welcome
+    def welcome
         puts "Welcome to concert finder!"
         puts " "
-        collect_user_info
-    end
-
-    def self.collect_user_info
         puts "What is your name?"
         user_name = gets.chomp
+        collect_user_info(user_name)
+    end
+
+    def repeat(user_name)
+        collect_user_info(user_name)
+    end
+
+    def collect_user_info(user_name)
         puts "What genre of music would you like to see this weekend?"
         puts "country, hip hop, electronic or metal"
         user_genre = gets.chomp.capitalize
@@ -30,20 +31,20 @@ class Cli < ActiveRecord::Base
         set_user(user_name, user_genre)
     end 
 
-    def self.set_user(user_name, user_genre)
+    def set_user(user_name, user_genre)
         TicketHolder.create(name: user_name, favorite_genre: user_genre)
-        select_matching_concerts(user_genre)
+        select_matching_concerts(user_genre, user_name)
     end 
     
-    def self.select_matching_concerts(user_genre)
+    def select_matching_concerts(user_genre, user_name)
         results = Concert.select do |concert|
             concert.genre == user_genre
         end
         results
-        display_matching_concerts(results)
+        display_matching_concerts(results, user_name)
     end
 
-    def self.display_matching_concerts(results)
+    def display_matching_concerts(results, user_name)
         results.each do |concert|
             venue_name = Venue.all.select do |venue|
                  venue.id == concert.venue_id
@@ -57,15 +58,15 @@ class Cli < ActiveRecord::Base
             
         end  
         puts " "
-        play_again
+        play_again(user_name)
     end
 
-        def self.play_again
+        def play_again(user_name)
             puts "Would you like to look for more concerts?"
             answer = gets.chomp.downcase
             if answer == "yes"
                 puts " "
-                self.welcome
+                self.repeat(user_name)
             else
                 puts " "
                 puts "Enjoy the show!!"

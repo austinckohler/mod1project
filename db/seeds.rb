@@ -9,8 +9,8 @@
 #concert1 = Concert.create(venue_id, day, artist, genre, price)?
 
 
-use gem tyyprompt
-use gem  colorize 
+# use gem tyyprompt
+# use gem  colorize 
 
 
 venue1 = Venue.create(name: "Red Rocks", location: "Morrison")
