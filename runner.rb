@@ -5,4 +5,4 @@ concert_app = Cli.new
 
 concert_app.welcome
 
-binding.pry
+#binding.pry

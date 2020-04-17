@@ -13,14 +13,14 @@
 # use gem  colorize 
 
 
-venue1 = Venue.create(name: "Red Rocks", location: "Morrison")
-venue2 = Venue.create(name: "Cervantes", location: "Five Points")
-venue3 = Venue.create(name: "Ogden Theatre", location: "Capitol Hill")
-venue4 = Venue.create(name: "Oriental Theatre", location: "Highlands")
-venue5 = Venue.create(name: "Bluebird Theatre", location: "City Park")
-venue6 = Venue.create(name: "Marquis Theatre", location: "Downtown")
-venue7 = Venue.create(name: "Ophelia's", location: "Downtown")
-venue8 = Venue.create(name: "Filmore Theatre", location: "Capitol Hill")
+venue1 = Venue.create(name: "Red Rocks", location: "18300 W Alameda Pkwy, Morrison, CO 80465")
+venue2 = Venue.create(name: "Cervantes", location: "2637 Welton St, Denver, CO 80205")
+venue3 = Venue.create(name: "Ogden Theatre", location: "935 E Colfax Ave, Denver, CO 80218")
+venue4 = Venue.create(name: "Oriental Theatre", location: "4335 W 44th Ave, Denver, CO 80212")
+venue5 = Venue.create(name: "Bluebird Theatre", location: "3317 E Colfax Ave, Denver, CO 80206")
+venue6 = Venue.create(name: "Marquis Theatre", location: "2009 Larimer St, Denver, CO 80205")
+venue7 = Venue.create(name: "Ophelia's", location: "1215 20th St, Denver, CO 80202")
+venue8 = Venue.create(name: "Filmore Theatre", location: "1510 N Clarkson St, Denver, CO 80218")
 
 concert1 = Concert.create(artist: "Warbringer", genre: "Metal", venue_id: venue1.id, day: "Friday")
 concert2 = Concert.create(artist: "Dylan Scott", genre: "Country", venue_id: venue1.id, day: "Saturday")
