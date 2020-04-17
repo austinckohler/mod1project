@@ -47,7 +47,7 @@ https://youtu.be/9qe0_ozkkbM
 
 ## Applications designers and collaborators
 
-    Indiana Danaher: 
+    Indiana Danaher: https://github.com/indyindiana
     Austin Kohler: https://github.com/austinckohler
 
 
