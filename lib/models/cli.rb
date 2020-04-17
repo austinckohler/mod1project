@@ -52,10 +52,22 @@ class Cli  #shouldn't inherit from active record because its not a table in the 
 
     def user_selection(results)
         puts "What band would you like to see?"
-        selection = gets.chomp 
-        # if selection.downcase == 
-        play_again
+        selection = gets.chomp.downcase 
+        puts " "
+        new_array = results.select do |concert|
+            selection == concert.artist.downcase
+        end
+        if new_array.length > 0
+            puts " the #{new_array[0].venue.name} is at #{new_array[0].venue.location}."
+        else
+            puts "You should go see #{results[0].artist} at #{results[0].venue.name}"
+            puts "that's at #{results[0].venue.location}" 
+            puts " "
+        end
+        play_again 
     end
+
+
 
     def play_again
             puts "Would you like to look for more concerts?"
@@ -71,5 +83,6 @@ class Cli  #shouldn't inherit from active record because its not a table in the 
       
     def repeat
             collect_user_info
+                
     end
 end
